@@ -23,6 +23,10 @@ class CityRepositoryImpl @Inject constructor() : CityRepository {
         emit(CityProvider.getAllCategories())
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun getCategory(categoryId: String): Flow<Category?> = flow {
+        emit(CityProvider.getCategoryById(categoryId))
+    }.flowOn(Dispatchers.IO)
+
     override suspend fun getRecommendationsForCategory(categoryId: String): Flow<List<Recommendation>> = flow {
         emit(CityProvider.getRecommendationsByCategory(categoryId))
     }.flowOn(Dispatchers.IO)

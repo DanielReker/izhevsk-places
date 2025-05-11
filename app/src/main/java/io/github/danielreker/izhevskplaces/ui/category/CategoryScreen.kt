@@ -1,4 +1,4 @@
-package io.github.danielreker.izhevskplaces.ui.city
+package io.github.danielreker.izhevskplaces.ui.category
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,34 +21,34 @@ import io.github.danielreker.izhevskplaces.ui.theme.IzhevskPlacesTheme
 
 
 @Composable
-fun CityScreen(
+fun CategoryScreen(
     modifier: Modifier = Modifier,
-    viewModel: CityViewModel = hiltViewModel(),
-    onCityNameChanged: (newCityName: String?) -> Unit,
-    onCategorySelected: (categoryId: String) -> Unit,
+    viewModel: CategoryViewModel = hiltViewModel(),
+    onCategoryNameChanged: (newCategoryName: String?) -> Unit,
+    onRecommendationSelected: (recommendationId: String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    LaunchedEffect(uiState.city?.name) { onCityNameChanged(uiState.city?.name) }
-    CityScreenUi(uiState = uiState, modifier = modifier, onCategorySelected = onCategorySelected)
+    LaunchedEffect(uiState.category?.name) { onCategoryNameChanged(uiState.category?.name) }
+    CategoryScreenUi(uiState = uiState, modifier = modifier, onRecommendationSelected = onRecommendationSelected)
 }
 
 @Composable
-fun CityScreenUi(
-    uiState: CityUiState,
+fun CategoryScreenUi(
+    uiState: CategoryUiState,
     modifier: Modifier = Modifier,
-    onCategorySelected: (categoryId: String) -> Unit = {},
+    onRecommendationSelected: (recommendationId: String) -> Unit = {},
 ) {
     LazyColumn(
         modifier = modifier.padding(16.dp),
     ) {
-        if (uiState.categories != null) {
-            items(uiState.categories) { category ->
+        if (uiState.recommendations != null) {
+            items(uiState.recommendations) { recommendation ->
                 Card(
-                    onClick = { onCategorySelected(category.id) },
+                    onClick = { onRecommendationSelected(recommendation.id) },
                     modifier = Modifier.padding(8.dp).fillParentMaxWidth()
                 ) {
                     Text(
-                        text = category.name,
+                        text = recommendation.name,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(16.dp)
@@ -63,9 +63,12 @@ fun CityScreenUi(
 
 @Preview(showBackground = true)
 @Composable
-fun CityScreenPreview() {
+fun CategoryScreenPreview() {
     IzhevskPlacesTheme {
-        CityScreenUi(uiState = CityUiState(CityProvider.getCity(), categories = CityProvider.getAllCategories()))
+        CategoryScreenUi(uiState = CategoryUiState(
+            category = CityProvider.getCategoryById("parks"),
+            recommendations = CityProvider.getRecommendationsByCategory("parks"),
+        ))
     }
 }
 

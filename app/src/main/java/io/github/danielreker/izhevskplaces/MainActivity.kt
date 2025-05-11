@@ -29,6 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.danielreker.izhevskplaces.ui.category.CategoryScreen
 import io.github.danielreker.izhevskplaces.ui.city.CityScreen
 import io.github.danielreker.izhevskplaces.ui.theme.IzhevskPlacesTheme
 import kotlinx.serialization.Serializable
@@ -48,6 +49,9 @@ class MainActivity : ComponentActivity() {
 
 @Serializable
 object CityRoute
+
+@Serializable
+data class CategoryRoute(val categoryId: String)
 
 
 @Composable
@@ -69,7 +73,13 @@ fun CityApp() {
                 composable<CityRoute> {
                     CityScreen(
                         onCityNameChanged = { newCityName -> appBarTitle = newCityName },
-                        onCategorySelected = { /* TBC... */ }
+                        onCategorySelected = { categoryId -> navController.navigate(CategoryRoute(categoryId)) }
+                    )
+                }
+                composable<CategoryRoute> {
+                    CategoryScreen(
+                        onCategoryNameChanged = { newCategoryName -> appBarTitle = newCategoryName },
+                        onRecommendationSelected = {  }
                     )
                 }
             }

@@ -30,4 +30,8 @@ object CityProvider {
     fun getRecommendationById(recommendationId: String): Recommendation? {
         return recommendations.singleOrNull { it.id == recommendationId }
     }
+
+    fun getCategoryById(categoryId: String): Category? {
+        return categories.singleOrNull { it.id == categoryId }
+    }
 }
