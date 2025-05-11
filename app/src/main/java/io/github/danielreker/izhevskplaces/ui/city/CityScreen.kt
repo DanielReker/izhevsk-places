@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import io.github.danielreker.izhevskplaces.CityAppBar
+import io.github.danielreker.izhevskplaces.CityAppScreen
 import io.github.danielreker.izhevskplaces.data.datasources.CityProvider
 import io.github.danielreker.izhevskplaces.ui.theme.IzhevskPlacesTheme
 
@@ -24,12 +26,19 @@ import io.github.danielreker.izhevskplaces.ui.theme.IzhevskPlacesTheme
 fun CityScreen(
     modifier: Modifier = Modifier,
     viewModel: CityViewModel = hiltViewModel(),
-    onCityNameChanged: (newCityName: String?) -> Unit,
     onCategorySelected: (categoryId: String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    LaunchedEffect(uiState.city?.name) { onCityNameChanged(uiState.city?.name) }
-    CityScreenUi(uiState = uiState, modifier = modifier, onCategorySelected = onCategorySelected)
+
+    CityAppScreen(
+        appBar = { CityAppBar(
+            title = uiState.city?.name,
+            canNavigateBack = false,
+            navigateUp = {},
+        ) }
+    ) {
+        CityScreenUi(uiState = uiState, modifier = modifier, onCategorySelected = onCategorySelected)
+    }
 }
 
 @Composable
