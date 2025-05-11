@@ -21,8 +21,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import io.github.danielreker.izhevskplaces.CityAppBar
-import io.github.danielreker.izhevskplaces.CityAppScreen
+import io.github.danielreker.izhevskplaces.ui.CityAppBar
+import io.github.danielreker.izhevskplaces.ui.CityAppScreen
 import io.github.danielreker.izhevskplaces.data.datasources.CityProvider
 import io.github.danielreker.izhevskplaces.ui.theme.IzhevskPlacesTheme
 

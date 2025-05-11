@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.danielreker.izhevskplaces.CategoryRoute
+import io.github.danielreker.izhevskplaces.ui.CategoryRoute
 import io.github.danielreker.izhevskplaces.data.repositories.CityRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

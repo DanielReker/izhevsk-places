@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import io.github.danielreker.izhevskplaces.CityAppBar
-import io.github.danielreker.izhevskplaces.CityAppScreen
+import io.github.danielreker.izhevskplaces.ui.CityAppBar
+import io.github.danielreker.izhevskplaces.ui.CityAppScreen
 import io.github.danielreker.izhevskplaces.data.datasources.CityProvider
 import io.github.danielreker.izhevskplaces.ui.theme.IzhevskPlacesTheme
 

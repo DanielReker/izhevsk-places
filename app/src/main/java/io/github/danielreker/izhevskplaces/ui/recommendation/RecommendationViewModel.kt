@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.danielreker.izhevskplaces.RecommendationRoute
+import io.github.danielreker.izhevskplaces.ui.RecommendationRoute
 import io.github.danielreker.izhevskplaces.data.repositories.CityRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
