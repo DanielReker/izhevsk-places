@@ -4,15 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -36,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.danielreker.izhevskplaces.ui.category.CategoryScreen
 import io.github.danielreker.izhevskplaces.ui.city.CityScreen
+import io.github.danielreker.izhevskplaces.ui.recommendation.RecommendationScreen
 import io.github.danielreker.izhevskplaces.ui.theme.IzhevskPlacesTheme
 import kotlinx.serialization.Serializable
 
@@ -58,6 +50,9 @@ object CityRoute
 @Serializable
 data class CategoryRoute(val categoryId: String)
 
+@Serializable
+data class RecommendationRoute(val recommendationId: String)
+
 
 @Composable
 fun CityApp() {
@@ -74,7 +69,12 @@ fun CityApp() {
         }
         composable<CategoryRoute> {
             CategoryScreen(
-                onRecommendationSelected = {  },
+                onRecommendationSelected = { recommendationId -> navController.navigate(RecommendationRoute(recommendationId)) },
+                onNavigateUp = { navController.navigateUp() }
+            )
+        }
+        composable<RecommendationRoute> {
+            RecommendationScreen(
                 onNavigateUp = { navController.navigateUp() }
             )
         }
