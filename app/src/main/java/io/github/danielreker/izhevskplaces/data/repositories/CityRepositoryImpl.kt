@@ -13,25 +13,27 @@ import javax.inject.Singleton
 
 
 @Singleton
-class CityRepositoryImpl @Inject constructor() : CityRepository {
+class CityRepositoryImpl @Inject constructor(
+    private val cityProvider: CityProvider,
+) : CityRepository {
 
     override suspend fun getCity(): Flow<City> = flow {
-        emit(CityProvider.getCity())
+        emit(cityProvider.getCity())
     }.flowOn(Dispatchers.IO)
 
     override suspend fun getCategories(): Flow<List<Category>> = flow {
-        emit(CityProvider.getAllCategories())
+        emit(cityProvider.getAllCategories())
     }.flowOn(Dispatchers.IO)
 
     override suspend fun getCategory(categoryId: String): Flow<Category?> = flow {
-        emit(CityProvider.getCategoryById(categoryId))
+        emit(cityProvider.getCategoryById(categoryId))
     }.flowOn(Dispatchers.IO)
 
     override suspend fun getRecommendationsForCategory(categoryId: String): Flow<List<Recommendation>> = flow {
-        emit(CityProvider.getRecommendationsByCategory(categoryId))
+        emit(cityProvider.getRecommendationsByCategory(categoryId))
     }.flowOn(Dispatchers.IO)
 
     override suspend fun getRecommendation(recommendationId: String): Flow<Recommendation?> = flow {
-        emit(CityProvider.getRecommendationById(recommendationId))
+        emit(cityProvider.getRecommendationById(recommendationId))
     }.flowOn(Dispatchers.IO)
 }

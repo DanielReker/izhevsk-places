@@ -69,9 +69,10 @@ fun RecommendationScreenUi(
 @Preview(showBackground = true)
 @Composable
 fun RecommendationScreenPreview() {
+    val cityProvider = CityProvider()
     IzhevskPlacesTheme {
         RecommendationScreenUi(uiState = RecommendationUiState(
-            recommendation = CityProvider.getRecommendationById("park-gorkogo")
+            recommendation = cityProvider.getRecommendationById("park-gorkogo")
         ))
     }
 }

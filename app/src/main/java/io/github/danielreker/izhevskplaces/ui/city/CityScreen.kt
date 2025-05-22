@@ -72,8 +72,9 @@ fun CityScreenUi(
 @Preview(showBackground = true)
 @Composable
 fun CityScreenPreview() {
+    val cityProvider = CityProvider()
     IzhevskPlacesTheme {
-        CityScreenUi(uiState = CityUiState(CityProvider.getCity(), categories = CityProvider.getAllCategories()))
+        CityScreenUi(uiState = CityUiState(cityProvider.getCity(), categories = cityProvider.getAllCategories()))
     }
 }
 

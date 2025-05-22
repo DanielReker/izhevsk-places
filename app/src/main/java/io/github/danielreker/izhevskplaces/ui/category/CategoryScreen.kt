@@ -54,7 +54,9 @@ fun CategoryScreenUi(
             items(uiState.recommendations) { recommendation ->
                 Card(
                     onClick = { onRecommendationSelected(recommendation.id) },
-                    modifier = Modifier.padding(8.dp).fillParentMaxWidth()
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .fillParentMaxWidth()
                 ) {
                     Text(
                         text = recommendation.name,
@@ -73,10 +75,11 @@ fun CategoryScreenUi(
 @Preview(showBackground = true)
 @Composable
 fun CategoryScreenPreview() {
+    val cityProvider = CityProvider()
     IzhevskPlacesTheme {
         CategoryScreenUi(uiState = CategoryUiState(
-            category = CityProvider.getCategoryById("parks"),
-            recommendations = CityProvider.getRecommendationsByCategory("parks"),
+            category = cityProvider.getCategoryById("parks"),
+            recommendations = cityProvider.getRecommendationsByCategory("parks"),
         ))
     }
 }

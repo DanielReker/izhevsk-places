@@ -3,8 +3,11 @@ package io.github.danielreker.izhevskplaces.data.datasources
 import io.github.danielreker.izhevskplaces.model.Category
 import io.github.danielreker.izhevskplaces.model.City
 import io.github.danielreker.izhevskplaces.model.Recommendation
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object CityProvider {
+@Singleton
+class CityProvider @Inject constructor() {
     private val city = City(id = "izhevsk", name = "Ижевск")
 
     private val categories = listOf(
